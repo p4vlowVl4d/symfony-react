@@ -32,10 +32,12 @@ class Run extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $react = new ReactKernel(
-            $input->hasOption('host') ? $input->getOption('host') : 'localhost',
-            $input->hasOption('port') ? $input->getOption('port') : '8080'
-        );
+        $host = $input->hasOption('host') ? $input->getOption('host') : 'localhost';
+        $port = $input->hasOption('port') ? $input->getOption('port') : '8080';
+        $output->writeln('<info>Initialize kernel</info>');
+        $react = new ReactKernel($host, $port);
+        $output->writeln('<info>Server Initialize successfully</info>');
+        $output->writeln(sprintf('<info>Listen on %s:%s</info>', $host, $port));
         $react->listen();
     }
 }
