@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\ReactKernel;
+use App\AppKernel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -35,9 +35,9 @@ class Run extends Command
         $host = $input->hasOption('host') ? $input->getOption('host') : 'localhost';
         $port = $input->hasOption('port') ? $input->getOption('port') : '8080';
         $output->writeln('<info>Initialize kernel</info>');
-        $react = new ReactKernel($host, $port);
+        $react = new AppKernel($host, $port);
         $output->writeln('<info>Server Initialize successfully</info>');
         $output->writeln(sprintf('<info>Listen on %s:%s</info>', $host, $port));
-        $react->listen();
+        $react->run();
     }
 }
