@@ -36,7 +36,7 @@ class AppKernel extends Kernel
      */
     public function __construct(string $host = 'localhost', string $port = '80')
     {
-        parent::__construct('prod', true);
+        parent::__construct($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
         $this->host = $host;
         $this->port = $port;
     }
